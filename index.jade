@@ -1,0 +1,51 @@
+doctype
+html
+    head
+        title Contact gallery
+        link(rel='stylesheet' href="bower_components/bootstrap/dist/css/bootstrap.css")
+        link(rel='stylesheet' href="bower_components/bootstrap/dist/css/bootstrap.min.css")
+        link(rel='stylesheet' href="style.css")
+
+    body(ng-app="myApp" ng-controller="myCtrl")
+        div(class='container' )
+            header
+                h1 Hamza contact gallery
+            //form to add new contacts
+            form
+                div(class="form-row")
+                    div(class="form-sector")
+                        label(for="name" class="col-form-label") name
+                        input(type="text" ng-model='name' class="form-control add-contact-input" id="name" placeholder="Name" required=)
+
+                    div(class="form-sector")
+                        label(for="phone" class="col-form-label") phone
+                        input(type="number" ng-model='phone' class="form-control add-contact-input" id="phone" placeholder="phone number" required)
+
+                    div(class="form-sector")
+                        label(for="email" class="col-form-label") e-mail
+                        input(type="email" ng-model='email' class="form-control add-contact-input" id="email" placeholder="e-mail" required)
+                    input(type="submit" ng-click="addContacts()" class="btn btn-primary add-contact-btn" value='add contact' ng-hide="!btnFlag")
+                    input(type="submit" ng-click="doneEditing()" class="btn btn-primary add-contact-btn" value='Done Editing !!' ng-hide="btnFlag")
+
+            strong {{ errMsg }}
+            //contacts table
+            table(class="table table-striped table-bordered contacts-table")
+                thead
+                    tr
+                        th first Name
+                        th phone Number
+                        th e-mail Address
+                        th actions
+                tbody
+                    tr(ng-repeat="contacts in list")
+                        td(class='contact-name') {{ contacts.Name }}
+                        td {{ contacts.Phone }}
+                        td {{ contacts.Email }}
+                        td
+                            button(class="btn btn-info" ng-click="editContact($index)") edit
+                            button(class="btn btn-danger" ng-click="deleteContact($index)") delete
+
+
+        footer
+            script(type="text/javascript" src="bower_components/angular/angular.js")
+            script(type="text/javascript" src="script.js")
